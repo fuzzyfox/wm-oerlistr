@@ -18,9 +18,9 @@
   "author": "William Duyck",
   "license": "MPL-2",
   "bugs": {
-    "url": "https://github.com/fuzzyfox/wmoerlistr/issues"
+    "url": "https://github.com/fuzzyfox/wm-oerlistr/issues"
   },
-  "homepage": "https://github.com/fuzzyfox/wmoerlistr",
+  "homepage": "https://github.com/fuzzyfox/wm-oerlistr",
   "dependencies": {
     "makeapi-client": "git://github.com/mozilla/makeapi-client",
     "minimist": "^0.1.0"
