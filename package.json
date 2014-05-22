@@ -1,0 +1,28 @@
+{
+  "name": "wm-oerlistr",
+  "version": "0.0.1",
+  "description": "A simple hack to list all exisiting teaching resources in wm.o and dedupe users, then spit out a list of users + resources",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fuzzyfox/wm-oerlistr"
+  },
+  "keywords": [
+    "webmaker",
+    "oer",
+    "list"
+  ],
+  "author": "William Duyck",
+  "license": "MPL-2",
+  "bugs": {
+    "url": "https://github.com/fuzzyfox/wmoerlistr/issues"
+  },
+  "homepage": "https://github.com/fuzzyfox/wmoerlistr",
+  "dependencies": {
+    "makeapi-client": "git://github.com/mozilla/makeapi-client",
+    "minimist": "^0.1.0"
+  }
+}
