@@ -16,7 +16,7 @@ function debug() {
 }
 
 // run search w/ pagination
-function next( page ) {
+function next( page, callback ) {
 	debug( 'searching for OERs – page ' + page );
 	makeapi.tags( [ 'teach' ] ).limit( 100 ).page( page ).then( function( err, makes ) {
 		if( err ) {
@@ -25,17 +25,25 @@ function next( page ) {
 
 		if( makes.length > 0 ) {
 			allMakes = allMakes.concat( makes );
-			next( page + 1 );
+			next( page + 1, callback );
 		}
 		else {
-			done();
+			done( callback );
 		}
 	});
 }
 
 // output just users
-function done() {
+function done( callback ) {
 	debug( 'done searching, processing data' );
+
+	if( !callback && ( require.main === module ) ) {
+		debug( 'no callback, and direct commandline call, spewforth JSON' );
+
+		callback = function( output ) {
+			console.log( JSON.stringify( output ) );
+		};
+	}
 
 	var rtn = {};
 	var users = [];
@@ -73,11 +81,37 @@ function done() {
 			avgOERsPerUser: allMakes.length/users.length
 		};
 
-		return console.log( JSON.stringify( stats ) );
+		callback( stats );
+		return;
 	}
 
-	console.log( JSON.stringify( rtn ) );
+	callback( rtn );
+	return;
 }
 
-// initiate search
-next( 1 );
+// initiate search if called directly
+if( require.main === module ) {
+	next( 1 );
+}
+
+module.exports = {
+	getUserStats: function( callback, debug ) {
+		argv.stats = true;
+		argv.debug = debug;
+
+		if( !callback ) {
+			throw 'callback function required when not calling directly from commandline';
+		}
+
+		next( 1, callback );
+	},
+	getUserOERs: function( callback, debug ) {
+		argv.debug = debug;
+
+		if( !callback ) {
+			throw 'callback function required when not calling directly from commandline';
+		}
+
+		next( 1, callback );
+	}
+};
