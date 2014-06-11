@@ -16,12 +16,20 @@ A simple hack to list all exisiting teaching resources in wm.o and dedupe users,
 	// get stats
 	oerlist.getUserStats( function( statsObj ) {
 		// do something
-	}, debug );
+	}, oerType, debug );
 
 	// get oers by user
 	oerlist.getUserOERs( function( userOERObj ) {
 		// do something
-	}, debug );
+	}, oerType, debug );
+
+* `oerType` can be any of the following
+	* `'kit'` – gets only Teaching Kits
+	* `'activity'` – gets only Teaching Activities
+	* `undefined` – gets all OERs
+* `debug` is a flag to display debug output in console
+	* `true` – show debug output
+	* `false` / `undefined` – do **not** show debug output
 
 #### Stats object
 
@@ -50,6 +58,12 @@ A simple hack to list all exisiting teaching resources in wm.o and dedupe users,
 #### Get stats (only stats)
 
 	node app.js --stats
+
+#### Specify OER Type
+
+	node app.js --type={oerType}
+
+Where `{oerType}` is replaced w/ one of the options listed earlier.
 
 #### Debug
 
