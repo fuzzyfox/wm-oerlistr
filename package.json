@@ -1,6 +1,6 @@
 {
   "name": "wm-oerlistr",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple hack to list all exisiting teaching resources in wm.o and dedupe users, then spit out a list of users + resources",
   "main": "app.js",
   "scripts": {
